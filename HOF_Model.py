@@ -13,9 +13,8 @@ from sklearn import metrics
 
 
 def main():
-    learningRate = 0.003
-    steps = 10
-    Epochs = 200000
+    learningRate = 0.00003
+    steps = 20000
     periods = 10
     batch_size = 500
     stepsPerPeriod = steps/periods
@@ -91,14 +90,14 @@ def main():
             input_fn=train_func,
             steps=stepsPerPeriod
         )
-        
+        print "Here : STEP 2 "
         # Take a break and compute predictions.
         training_predictions = linear_regressor.predict(input_fn=train_predict_func)
         training_predictions = np.array([item['predictions'][0] for item in training_predictions])
-        
+        print "Here : STEP 3 "
         validation_predictions = linear_regressor.predict(input_fn=test_predict_func)
         validation_predictions = np.array([item['predictions'][0] for item in validation_predictions])
-        print "Here : STEP 2 "
+        print "Here : STEP 4 "
         # Compute training and validation loss.
         training_root_mean_squared_error = math.sqrt(
             metrics.mean_squared_error(training_predictions, trainL))
